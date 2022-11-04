@@ -10,7 +10,10 @@ def length(array: np.ndarray) -> int:
     return len(array)
 
 def matrix(array: np.ndarray, nrow:int=1, ncol:int=1, byrow:bool=False) -> np.ndarray:
-    """Creates a nrow x ncol matrix from a given array."""
+    """Creates a nrow by ncol matrix from a given array.
+    Data is repeated to fill matrix when given array cannot fill matrix on its own, and is truncated
+    when the array is larger than ncol x nrow.
+    """
     array_length = nrow * ncol
     if len(array) < array_length:
         array = np.tile(array, array_length+len(array))
@@ -24,7 +27,7 @@ def matrix(array: np.ndarray, nrow:int=1, ncol:int=1, byrow:bool=False) -> np.nd
                 else:
                     this_row.append(array[i + (j*nrow)])
             except IndexError:
-                return "Too many columns or rows"
+                return np.asarray([])
         matrix.append(this_row)
     return np.asarray(matrix)
 
