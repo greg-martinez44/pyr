@@ -1,3 +1,4 @@
 venv/*
 result_images/*
-**__pycache__/*
+rfuncs/__pycache__/*
+test/__pycache__/*
